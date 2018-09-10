@@ -1,0 +1,77 @@
+java -cp . benchmarkgame.Server 127.0.0.1
+
+Running Server: Host=127.0.0.1 Port=35482
+Waiting for new players ...
+Client <127.0.0.151108> logged in!
+
+Message from 127.0.0.1: MOVE UR -- [Ljava.lang.String;@730a3f
+
+Message from 127.0.0.1: MOVE LEFT -- [Ljava.lang.String;@4f89fe7a
+
+Message from 127.0.0.1: MOVE UL -- [Ljava.lang.String;@57333746
+
+Message from 127.0.0.1: MOVE DR -- [Ljava.lang.String;@7e0cd71d
+
+Message from 127.0.0.1: MOVE RIGHT -- [Ljava.lang.String;@2f5c408a
+
+Message from 127.0.0.1: MOVE LEFT -- [Ljava.lang.String;@2fa60135
+
+Message from 127.0.0.1: MOVE DOWN -- [Ljava.lang.String;@61e18a80
+
+Message from 127.0.0.1: MOVE LEFT -- [Ljava.lang.String;@794d1d9e
+
+Message from 127.0.0.1: MOVE LEFT -- [Ljava.lang.String;@34584a2d
+Client <127.0.0.151110> logged in!
+
+Message from 127.0.0.1: SHOW -- [Ljava.lang.String;@1a481e17
+free	free	free	free	free	free	free	free	free	127.0.0.151108	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	free	
+
