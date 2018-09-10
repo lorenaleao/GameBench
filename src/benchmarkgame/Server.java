@@ -1,7 +1,6 @@
 package benchmarkgame;
 
 
-import sample.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -18,30 +17,44 @@ import benchmarkgame.gameutils.LocPair;
 import benchmarkgame.gameutils.Move;
 import benchmarkgame.gameutils.PositionState;
 import benchmarkgame.gameutils.Status;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.Random;
 
 
 /**
- * Implements the game server
+ * Implements the game server.
  * @author juniocezar
  */
 public class Server {
+    /**
+     * Maximum number of threads the server may launch.
+     */
     private final int threadLimit = 16;
-    private final int maxPlayers  = 100;
+    /**
+     * Maximum number of players may be connected to the server.
+     */
+    private final int maxPlayers  = 30;
+    /**
+     * Fixed game map size.
+     */
     private final int boardSide   = maxPlayers / 2;
     private String[][] MAP = new String[boardSide][boardSide];
     private Map<String, LocPair> currentPosition;
     private NetworkManager nm;
-    private static Server ref;
+    private static Server ref = null;
+    private int nextFreePos = 0;
     Random r = new Random();
-    
-    private Map<Integer, Integer> map = new HashMap<Integer, Integer>();
-    
+
+    /**
+     * Returns reference to the server single instance.
+     * @return 
+     */
     public static Server getServerRef() {
         return ref;
     }
     
-    public Server(String ipAddr) throws Exception {
+    private Server(String ipAddr) throws Exception {
         nm = new NetworkManager(this, ipAddr);
         currentPosition = new HashMap<String, LocPair>();
         ref = this;
@@ -52,38 +65,73 @@ public class Server {
         }
     }
     
+    /**
+     * Returns a reference to the server or creates a new one and returns.
+     * @param ipAddr: IP address of the server.
+     * @return: Reference to the server single instance.
+     * @throws Exception 
+     */
+    public static Server v(String ipAddr) throws Exception {
+        if (ref != null)
+            return ref;
+        
+        return new Server(ipAddr);
+    }
+    
+    /**
+     * Listen to client new requests through the NetworkManager.
+     * @throws Exception 
+     */
     private void init() throws Exception {
-        System.out.println("\r\nRunning Server: " + 
+        System.out.println("\r\nRunning Game Server: " + 
                 "Host=" + nm.getSocketAddress().getHostAddress() + 
                 " Port=" + nm.getPort());
         
         nm.listen();
     }
     
-    // toDo: replace use of random
-    public void randomPosition(String clientID) {
+    // toDo: replace use of random (is is required?)
+    /**
+     * Chooses a random initial position for a new player.
+     * @param clientID: New player id.
+     */
+    public Status randomPosition(String clientID) {
+        if (nextFreePos >= boardSide) {
+            return Status.FAILED;
+        }
+        
         if (! currentPosition.containsKey(clientID)) {
             synchronized(MAP) {
-                int x = r.nextInt(boardSide);
-                int y = r.nextInt(boardSide);
-                while (MAP[x][y] != "free") {
-                    x++;
-                    if (x >= boardSide) {
-                        x = y;
-                        y = r.nextInt(boardSide);
-                    }
-                }
+                // math.floor is redundant, just to use in explanation
+                int x = (int)Math.floor(nextFreePos / boardSide); 
+                int y = nextFreePos % boardSide;
                 LocPair pos = new LocPair(x,y);
                 currentPosition.put(clientID, pos);
+                nextFreePos++;
             }
         }
+        
+        return Status.OK;
     }
     
+    /**
+     * Updates the player position in the game map.
+     * @param clientID: Player identification.
+     * @param x: Change in the direction x.
+     * @param y: Change in the direction y.
+     * @return Status: Enum status describing the success or fail of operation.
+     */
     public Status updatePosition(String clientID, int x, int y) {
         LocPair pos = currentPosition.get(clientID);
         // cheching future position
         x += pos.x;
         y += pos.y;
+        
+        if (x >= boardSide || y >= boardSide)
+            return Status.FAILED;
+        
+        if (x <= 0 || y <= 0)
+            return Status.FAILED;
         
         synchronized (MAP) {
             switch(MAP[x][y]) {
@@ -107,7 +155,11 @@ public class Server {
         String out = "";
         for(int i = 0 ; i < boardSide; i++) {
             for(int j = 0 ; j < boardSide; j++) {
-                out += MAP[i][j] + "\t";
+                if(MAP[i][j] == "free")
+                    out += "0 ";
+                else
+                    out += "X ";
+                //out += MAP[i][j] + "\t";
             }
             out += "\n";
         }
@@ -115,12 +167,38 @@ public class Server {
     }
     
     public static void main(String[] args) throws Exception {
-        Server app = new Server(args[0]);
+        Server app = Server.v(args[0]);
+        
+        Thread printer = new Thread() {              
+                public void run(){
+                    BufferedWriter writer = null;
+                    try {
+                        writer = new BufferedWriter(new FileWriter("state.txt"));
+                        writer.write("Game State:\n");
+                        while(true) {                        
+                            writer.write(app.toString());
+                            writer.write("\n\n");
+                            Thread.sleep(1000);
+                        }
+                        
+                    } catch (Exception e) {
+                        // do something
+                    }
+                    // writer.close();
+                }
+            };
+        
+        printer.start();
+        
         app.init();
     }
 }
 
-
+/**
+ * Implements a network manager that handles new user requests, as well user 
+ * operations.
+ * @author juniocezar
+ */
 class NetworkManager {
     private ServerSocket server;
     private int threadLimit = 16;
@@ -162,7 +240,10 @@ class NetworkManager {
     
 }
 
-
+/**
+ * Implements a runnable handler to each user.
+ * @author juniocezar
+ */
 class Handler implements Runnable {
     Socket client;
     String clientID;
@@ -240,7 +321,6 @@ class Handler implements Runnable {
                 break;
             default:
                 break;
-                
         }
     }
     
@@ -255,10 +335,13 @@ class Handler implements Runnable {
         String clientPort = ((Integer)client.getPort()).toString();
         clientID = clientAddress + clientPort;        
         s = Server.getServerRef();
-        s.randomPosition(clientID);
+        
+        if(s.randomPosition(clientID) == Status.FAILED) {
+            // not using this thread.
+            return;
+        }
         
         System.out.println("Client <" + clientID + "> logged in!");
-        
         
         // receives messages from the player with commands to be executed on the
         // server, like movements or attacks
@@ -267,7 +350,7 @@ class Handler implements Runnable {
                 new InputStreamReader(client.getInputStream()));
             while ( (data = in.readLine()) != null ) {
                 String[] command = data.split(" ");
-                System.out.println("\r\nMessage from " + clientAddress + ": " + data + " -- " + command);
+                System.out.println("\r\nMessage from " + clientPort + ": " + data + " -- " + command);
                 handleCommand(command);
             }
         } catch (IOException ex) {
