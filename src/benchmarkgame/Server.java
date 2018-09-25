@@ -40,7 +40,7 @@ public class Server {
      */
     private final int boardSide   = maxPlayers / 2;
     private String[][] MAP = new String[boardSide][boardSide];
-    private Map<String, LocPair> currentPosition;
+    private Map<String, LocPair> currentPosition; 
     private NetworkManager nm;
     private static Server ref = null;
     private int nextFreePos = 0;
@@ -48,12 +48,20 @@ public class Server {
 
     /**
      * Returns reference to the server single instance.
-     * @return 
+     * @return Reference to the server single instance
      */
     public static Server getServerRef() {
         return ref;
     }
     
+    /**
+     * Constructor: Initializes server by stablishing a connection with the network,
+     * initializing the currentPosition and ref variables and initializing the map 
+     * of the game with all positions being free, that is, without players.
+     *
+     * @param ipAddr IP address of the server
+     * @throws Exception
+     */
     private Server(String ipAddr) throws Exception {
         nm = new NetworkManager(this, ipAddr);
         currentPosition = new HashMap<String, LocPair>();
@@ -67,8 +75,8 @@ public class Server {
     
     /**
      * Returns a reference to the server or creates a new one and returns.
-     * @param ipAddr: IP address of the server.
-     * @return: Reference to the server single instance.
+     * @param ipAddr IP address of the server
+     * @return Reference to the server single instance
      * @throws Exception 
      */
     public static Server v(String ipAddr) throws Exception {
@@ -93,10 +101,15 @@ public class Server {
     // toDo: replace use of random (is is required?)
     /**
      * Chooses a random initial position for a new player.
-     * @param clientID: New player id.
+     *
+     * @param clientID New player ID
+     * @return Status Enum status describing the success or fail of operation
      */
     public Status randomPosition(String clientID) {
-        if (nextFreePos >= boardSide) {
+        //if (nextFreePos >= boardSide) 
+        //  this way ^^^^^^^^^^^^^, with the nextFreePos variable starting from 0, 
+        //we allow only 15 map positions to be used
+        if (nextFreePos >= (boardSide*boardSide)) {
             return Status.FAILED;
         }
         
@@ -116,14 +129,15 @@ public class Server {
     
     /**
      * Updates the player position in the game map.
-     * @param clientID: Player identification.
-     * @param x: Change in the direction x.
-     * @param y: Change in the direction y.
-     * @return Status: Enum status describing the success or fail of operation.
+     *
+     * @param clientID Player identification.
+     * @param x Change in the direction x.
+     * @param y Change in the direction y.
+     * @return Status Enum status describing the success or fail of operation.
      */
     public Status updatePosition(String clientID, int x, int y) {
         LocPair pos = currentPosition.get(clientID);
-        // cheching future position
+        // checking future position
         x += pos.x;
         y += pos.y;
         
@@ -155,7 +169,7 @@ public class Server {
         String out = "";
         for(int i = 0 ; i < boardSide; i++) {
             for(int j = 0 ; j < boardSide; j++) {
-                if(MAP[i][j] == "free")
+                if(MAP[j][i] == "free")
                     out += "0 ";
                 else
                     out += "X ";
@@ -167,8 +181,10 @@ public class Server {
     }
     
     public static void main(String[] args) throws Exception {
-        final Server app = Server.v(args[0]);
+        final Server app = Server.v(args[0]); // a reference to the server
         
+        //creating a thread by implementing its run method 
+        //thread function: create a file that stores the game state every second
         Thread printer = new Thread() {              
                 public void run(){
                     BufferedWriter writer = null;
@@ -178,7 +194,7 @@ public class Server {
                         while(true) {                        
                             writer.write(app.toString());
                             writer.write("\n\n");
-                            Thread.sleep(1000);
+                            Thread.sleep(500);
                         }
                         
                     } catch (Exception e) {

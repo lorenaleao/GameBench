@@ -31,7 +31,7 @@ public class NetworkManager {
     
     /**
      * Initializes server, opening socket on input IP address.
-     * @param ipAddress: IP address to be used be the server.
+     * @param ipAddress: IP address to be used by the server.
      * @throws Exception 
      */
     public NetworkManager(Server _s, String ipAddress) throws Exception {
@@ -39,7 +39,7 @@ public class NetworkManager {
           this.server = new ServerSocket(0, 1, InetAddress.getByName(ipAddress));
         else 
           this.server = new ServerSocket(0, 1, InetAddress.getLocalHost());
-        s = _s;
+        this.s = _s;
     }
     
     /**
@@ -73,7 +73,7 @@ class Handler implements Runnable {
     Server s;
     
     public Handler(Socket c) {
-        client = c;
+        this.client = c;
     }
     
     public void cmdMove(Move direction) {
@@ -129,7 +129,7 @@ class Handler implements Runnable {
     }
         
     /**
-     * Handles clients commands, like movements and attacks.
+     * Handles clients commands like movements and attacks.
      * @param command: Command sent by client.
      */
     public void handleCommand(String[] command) {

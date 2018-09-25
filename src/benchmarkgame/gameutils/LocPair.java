@@ -14,8 +14,8 @@ public class LocPair {
     public int y;
     
     public LocPair(int _x, int _y) {
-        x = _x;
-        y = _y;
+        this.x = _x;
+        this.y = _y;
     }
     
 }
