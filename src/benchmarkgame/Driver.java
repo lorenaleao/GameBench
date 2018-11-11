@@ -13,22 +13,14 @@ public class Driver {
 			System.exit(1);
 		}
 
-		/**
-		 * Number of players may be connected to the server.
-		 */
-		int numPlayers = Integer.parseInt(args[0]);
-		/**
-		 * Number of moves per player. 
-		 */
-		final int movesPerPlayer = Integer.parseInt(args[1]);
-		/**
-		 * Array of players in the game.
-		 */
-		final Clients[] clients = new Clients[numPlayers];
-		/**
-		 * Threads vector, each thread will be associated with a single player.
-		 */
-		Vector<Thread> threads = new Vector<Thread>();
+		
+		int numPlayers = Integer.parseInt(args[0]); //Number of players may be connected to the server.
+		
+		final int movesPerPlayer = Integer.parseInt(args[1]); //Number of moves per player. 
+
+		final Clients[] clients = new Clients[numPlayers]; 	// Array of players in the game.
+
+		Vector<Thread> threads = new Vector<Thread>(); //Threads vector, each thread will be associated with a single player.
 		
 		//establishing the connection between players and the server
 		for(int i=0; i<numPlayers; i++){
@@ -51,7 +43,7 @@ public class Driver {
 					try {
 						clients[index].startToMove(movesPerPlayer);
 					} catch (IOException e) {
-						System.err.println("IO exception!"); //I still have to handle these exceptions properly I think
+						System.err.println("IO exception!");
 					} catch (InterruptedException e) {
 						System.err.println("Interrupt exception!");
 					}
