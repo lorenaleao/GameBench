@@ -173,7 +173,7 @@ class Handler implements Runnable {
                 new InputStreamReader(client.getInputStream()));
             while ( (data = in.readLine()) != null ) {
                 String[] command = data.split(" ");
-                System.out.println("\r\nMessage from " + clientPort + ": " + data + " -- " + command);
+                System.out.println("\r\nMessage from " + clientPort + ": " + data + " -- " + command[0]);
                 handleCommand(command);
             }
         } catch (IOException ex) {

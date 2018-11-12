@@ -44,7 +44,7 @@ public class Server {
     private NetworkManager nm;
     private static Server ref = null;
     private int nextFreePos = 0;
-    Random r = new Random();
+    Random randomNumber = new Random();
 
     /**
      * Returns reference to the server single instance.
@@ -92,13 +92,12 @@ public class Server {
      */
     private void init() throws Exception {
         System.out.println("\r\nRunning Game Server: " + 
-                "Host=" + nm.getSocketAddress().getHostAddress() + 
-                " Port=" + nm.getPort());
+                "Host = " + nm.getSocketAddress().getHostAddress() + 
+                " Port = " + nm.getPort());
         
         nm.listen();
     }
     
-    // toDo: replace use of random (is is required?)
     /**
      * Chooses a random initial position for a new player.
      *
@@ -106,18 +105,16 @@ public class Server {
      * @return Status Enum status describing the success or fail of operation
      */
     public Status randomPosition(String clientID) {
-        //if (nextFreePos >= boardSide) 
-        //  this way ^^^^^^^^^^^^^, with the nextFreePos variable starting from 0, 
-        //we allow only 15 map positions to be used
+        
         if (nextFreePos >= (boardSide*boardSide)) {
             return Status.FAILED;
         }
         
         if (! currentPosition.containsKey(clientID)) {
             synchronized(MAP) {
-                // math.floor is redundant, just to use in explanation
-                int x = (int)Math.floor(nextFreePos / boardSide); 
-                int y = nextFreePos % boardSide;
+                
+                int x = randomNumber.nextInt(boardSide); 
+                int y = randomNumber.nextInt(boardSide);
                 LocPair pos = new LocPair(x,y);
                 currentPosition.put(clientID, pos);
                 nextFreePos++;
@@ -141,12 +138,20 @@ public class Server {
         x += pos.x;
         y += pos.y;
         
-        if (x >= boardSide || y >= boardSide)
-            return Status.FAILED;
+        //making the matrix become "circular"
+        if (x >= boardSide){
+        	x -= boardSide;
+        } else if (x < 0) {
+        	x += boardSide; 
+        }
+
+        if (y >= boardSide){
+        	y -= boardSide;
+        } else if (y < 0) {
+        	y += boardSide;
+        }
         
-        if (x <= 0 || y <= 0)
-            return Status.FAILED;
-        
+        //updating the game map if the position is free
         synchronized (MAP) {
             switch(MAP[x][y]) {
                 case "free":
@@ -181,8 +186,13 @@ public class Server {
     }
     
     public static void main(String[] args) throws Exception {
-        final Server app = Server.v(args[0]); // a reference to the server
         
+        final Server app = Server.v(args[0]); // the function initializes the server 
+        									  // and returns a reference to the server,
+        									  // which is stored in "app".
+        									  // if there is no instance of the server class, 
+        									  // the function calls the class constructor to create it
+
         //creating a thread by implementing its run method 
         //thread function: create a file that stores the game state every second
         Thread printer = new Thread() {              

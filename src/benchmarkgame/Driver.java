@@ -13,7 +13,6 @@ public class Driver {
 			System.exit(1);
 		}
 
-		
 		int numPlayers = Integer.parseInt(args[0]); //Number of players may be connected to the server.
 		
 		final int movesPerPlayer = Integer.parseInt(args[1]); //Number of moves per player. 
