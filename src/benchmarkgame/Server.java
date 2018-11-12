@@ -106,17 +106,22 @@ public class Server {
      */
     public Status randomPosition(String clientID) {
         
+        int x, y;
+        LocPair pos;
+
         if (nextFreePos >= (boardSide*boardSide)) {
             return Status.FAILED;
         }
         
         if (! currentPosition.containsKey(clientID)) {
             synchronized(MAP) {
-                
-                int x = randomNumber.nextInt(boardSide); 
-                int y = randomNumber.nextInt(boardSide);
-                LocPair pos = new LocPair(x,y);
-                currentPosition.put(clientID, pos);
+                do {
+                	x = randomNumber.nextInt(boardSide); 
+                	y = randomNumber.nextInt(boardSide);
+                } while(MAP[x][y] != "free"); //finds a initial position for the player that is free
+                pos = new LocPair(x,y);
+                currentPosition.put(clientID, pos); //stores the player current position
+                MAP[x][y] = clientID; //updates the game map
                 nextFreePos++;
             }
         }
