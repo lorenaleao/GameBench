@@ -32,7 +32,7 @@ public class SingleClient {
         return clazz.getEnumConstants()[x];
     }
     
-    private void start() throws IOException, InterruptedException {        
+    private void startToMove() throws IOException, InterruptedException {        
         while (true) {
             Move m = randomEnum(Move.class);
             String send = "MOVE " + m;
@@ -51,14 +51,14 @@ public class SingleClient {
     
     public static void main(String[] args) throws Exception {
         SingleClient client = new SingleClient(
-                InetAddress.getByName(args[0]), 
-                Integer.parseInt(args[1]));
+                InetAddress.getByName(args[0]), //IP address
+                Integer.parseInt(args[1]));     //port number
         
         System.out.println("\r\nConnected to Server: " + client.socket.getInetAddress());
         
         if(args.length > 2)
             client.sendShow();           
         else
-            client.start();                
+            client.startToMove();                
     }
 }
