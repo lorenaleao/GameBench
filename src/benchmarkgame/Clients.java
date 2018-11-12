@@ -32,14 +32,13 @@ public class Clients {
         return clazz.getEnumConstants()[x];
     }
     
-    private void start() throws IOException, InterruptedException {        
-        while (true) {
+    private void start(int movesPerClient) throws IOException, InterruptedException {        
+        for(int i=0; i<movesPerClient; i++) {
             Move m = randomEnum(Move.class);
             String send = "MOVE " + m;
             PrintWriter out = new PrintWriter(this.socket.getOutputStream(), true);
             out.println(send);
             out.flush();
-            Thread.sleep(1000);
         }
     }
     private void sendShow() throws IOException {
